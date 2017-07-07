@@ -1,0 +1,2 @@
+1. 并发文章
+http://www.infoq.com/cn/articles/ConcurrentHashMap
