@@ -1,2 +1,5 @@
 1. 并发文章
 http://www.infoq.com/cn/articles/ConcurrentHashMap
+
+2. 技术类文章
+https://sanwen8.cn/p/2edz8bp.html
