@@ -4,3 +4,4 @@ http://www.infoq.com/cn/articles/ConcurrentHashMap
 2. 技术类文章
 https://sanwen8.cn/p/2edz8bp.html
 http://blog.csdn.net/ricohzhanglong
+https://www.ibm.com/developerworks/cn/java/j-lo-jvm-optimize-experience/index.html
