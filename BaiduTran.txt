@@ -1,0 +1,45 @@
+        try:
+            contentInUtf8 = lineContent.encode('utf-8')
+            appid = '20151113000005349'
+            secretKey = 'osubCEzlGjzvw8qdQc41'
+
+            httpClient = None
+            myurl = '/api/trans/vip/translate'
+            fromLang = 'zh'
+            toLang = 'en'
+            salt = random.randint(32768, 65536)
+
+            sign = appid + contentInUtf8 + str(salt) + secretKey
+            m1 = md5.new()
+            m1.update(sign)
+            sign = m1.hexdigest()
+            myurl = myurl + '?appid=' + appid + '&q=' + urllib.quote(
+                    contentInUtf8) + '&from=' + fromLang + '&to=' + toLang + '&salt=' + str(salt) + '&sign=' + sign
+
+            httpClient = httplib.HTTPConnection('api.fanyi.baidu.com')
+            httpClient.request('GET', myurl)
+
+            # response是HTTPResponse对象
+            response = httpClient.getresponse()
+            # print response
+            result = response.read()
+            # tranReault = json.loads(result)
+            # print result
+            result2 = result.decode('unicode_escape')  # 将转义字符\u读取出来
+            relink = ur'"dst":"(.*?)"}'
+            cinfo = re.findall(relink, result)
+
+            if(len(cinfo) > 0):
+                strContent = cinfo[0]
+
+            if(lineContent.find("\\") == -1):
+               strContent = strContent.replace("\\","")
+
+        except Exception, ex:
+        # Baidu fanyi api
+            print "Translate Exception info:Exception:%s,ex:%s" % (Exception, ex)
+            print "Translate Exception line:%s" % (lineContent)
+            raise
+        time.sleep(1)
+
+        return strContent
