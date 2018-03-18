@@ -1,0 +1,1 @@
+考虑实现Comparable interface
